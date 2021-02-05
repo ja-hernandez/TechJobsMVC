@@ -13,14 +13,17 @@ namespace TechJobsMVC.Controllers
     public class SearchController : Controller
     {
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
+            List<Job> jobs = new List<Job>();
             ViewBag.columns = ListController.ColumnChoices;
+            ViewBag.jobs = jobs;
             return View();
         }
 
         [HttpPost]
-        [Route("/search/")]
+        [Route("/Search/Index")]
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Job> jobs;
@@ -39,7 +42,7 @@ namespace TechJobsMVC.Controllers
              
             ViewBag.jobs = jobs;
 
-            return View();
+            return View("Index");
         }
     }
 }
